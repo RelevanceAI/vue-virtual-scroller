@@ -320,7 +320,7 @@ export default {
           i = ~~((a + b) / 2)
         } while (i !== oldI)
         i < 0 && (i = 0)
-        const startIndex = i
+        let startIndex = i
 
         // For container style
         const totalSize = sizes[count - 1].accumulator
@@ -336,6 +336,11 @@ export default {
             endIndex > count && (endIndex = count)
           }
         }
+
+        // I don't trust the sorcery above
+        startIndex = Math.max(startIndex, 0)
+        // Stop endIndex from being >items.length
+        endIndex = Math.min(endIndex, count)
 
         return {
           startIndex,

@@ -933,8 +933,12 @@
 
               _endIndex > count && (_endIndex = count);
             }
-          }
+          } // I don't trust the sorcery above
 
+
+          _startIndex = Math.max(_startIndex, 0); // Stop endIndex from being >items.length
+
+          _endIndex = Math.min(_endIndex, count);
           return {
             startIndex: _startIndex,
             endIndex: _endIndex,
